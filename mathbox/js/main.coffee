@@ -72,8 +72,8 @@ setup = () ->
   #mathbox.grid(axis:[0,2])
   # TODO: translate the axis to the shadow ? But then, how do we
   # know what the 0-level is ?
-  mathbox.axis(axis: 2, color: 0xa0a0a0, ticks: 0)
-  mathbox.axis(axis: 0, color: 0xa0a0a0, ticks: 0)
+  #mathbox.axis(axis: 2, color: 0xa0a0a0, ticks: 0)
+  #mathbox.axis(axis: 0, color: 0xa0a0a0, ticks: 0)
   #mathbox.axis(axis: 1, color: 0x0000ff)
   
   if false
@@ -110,30 +110,83 @@ setup = () ->
   # TODO:
   #  - study the relathionship between the two blues and make the same
   #    kind of variant for a new color (with husl.js).
+  # blue: 0x3280f0, dark-blue: 0x2060E0
+  
+  ###  
+      husl = (H, S=100, L=50) ->
+      string = "0x" + $.husl.toHex(H, S, L)[1..]
+      parseInt(string)
+  ###
+  int = (HSL) -> 
+    [H, S, L] = HSL
+    parseInt("0x" + $.husl.toHex(H, S, L)[1..])
+  
+  dark = (HSL) -> 
+    [H, S, L] = HSL
+    [H, Math.min(S + 5, 100), Math.max(L - 10, 0)]
+    
+  blue = [255.2172523246686, 90.06925396893368, 54.45567976090578]  
+  turquoise = [190, 90, 80]
+  coral = [25, 100, 70]
+  
+  # TODO: have a look at <http://www.buzzfeed.com/peggy/unexpected-color-combinations-that-look-amazing-together#.yxAYmPEvx> and select the best
+  # color pair
+
+  color = turquoise
+  expr = (x, y) -> 0.5 * (x*x - y*y)
+  
+  n = 32
+  
+  # TODO: plot the real part, animate to the imaginary part.
   
   mathbox.surface
-    id: "ZURFACE",
     domain: [[-1, 1], [-1, 1]],
-    n: [32, 32],
+    n: [n, n],
     live: false,
-    color: 0x3280f0,
-    expression: (x, y) -> 0.5 * (x*x - y*y),
+    color: int(color), 
+    expression: expr,
     mesh: true,
     line: false, 
     shaded: true,
     
   mathbox.surface
-    id: "test2",
     domain: [[-1, 1], [-1, 1]],
-    n: [32, 32],
+    n: [n, n],
     live: false,
-    expression: (x, y) -> 0.5 * (x*x - y*y),
-    color: 0x2060E0,
+    expression: expr,
+    color: int(dark(color)),
     mesh: false,
     line: true, 
     opacity: 1.0,
     zIndex: 10,
     shaded: true,
+  
+  color = coral
+  expr = (x, y) -> x * y
+  
+  mathbox.surface
+    domain: [[-1, 1], [-1, 1]],
+    n: [n, n],
+    live: false,
+    color: int(color), 
+    expression: expr,
+    mesh: true,
+    line: false, 
+    shaded: true,
+    
+  mathbox.surface
+    domain: [[-1, 1], [-1, 1]],
+    n: [n, n],
+    live: false,
+    expression: expr,
+    color: int(dark(color)),
+    mesh: false,
+    line: true, 
+    opacity: 1.0,
+    zIndex: 10,
+    shaded: true,
+    
+    
     
     
   mathbox.surface

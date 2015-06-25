@@ -368,7 +368,7 @@
   root._maxChromaForLH = maxChromaForLH;
 
   root._maxSafeChromaForL = maxSafeChromaForL;
-
+  
   if (!((typeof module !== "undefined" && module !== null) || (typeof jQuery !== "undefined" && jQuery !== null) || (typeof requirejs !== "undefined" && requirejs !== null))) {
     this.HUSL = root;
   }
