@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd mathbox/js && echo "coffee -c main.coffee" && coffee -c main.coffee
+cd - > /dev/null
+
+cd mathbox/css && echo "stylus style.styl" && stylus style.styl
+cd - > /dev/null
+
