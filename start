@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-cd mathbox && python -m SimpleHTTPServer
+cd mathbox && python -m SimpleHTTPServer &

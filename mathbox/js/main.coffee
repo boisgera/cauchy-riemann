@@ -86,7 +86,7 @@ setup = () ->
   }
 
   pov =
-    orbit: 5
+    orbit: 6
     phi: τ / 8
     theta: τ / 16
     lookAt: [0, 0, 0]
@@ -161,7 +161,7 @@ setup = () ->
   color = turquoise
   expr =  f.re
   
-  n = 32
+  n = 16
   
   # TODO: try to "shift" the real & imaginary part on the right & left.
   # TODO: plot the real part, animate to the imaginary part.
@@ -222,6 +222,36 @@ setup = () ->
   #       and tell mathjax to go there. Have a look at the slide deck sources
   #       to see how Wittens is doing the trick in his slides.
   # TODO: buttons to toggle re / im display.
+
+  display_re = () ->
+    color = turquoise
+    expr = f.re
+
+    duration = 3000
+    
+    mathbox.animate "#surf",
+      {color: int(color), expression: expr}, 
+      {duration: duration}
+  
+    mathbox.animate "#mesh", 
+      {color: int(dark(color)), expression: expr}, 
+      {duration: duration} 
+  
+  
+  display_im = () ->
+    color = coral
+    expr = f.im
+
+    duration = 3000
+    
+    mathbox.animate "#surf",
+      {color: int(color), expression: expr}, 
+      {duration: duration}
+  
+    mathbox.animate "#mesh", 
+      {color: int(dark(color)), expression: expr}, 
+      {duration: duration} 
+  
   
   re_to_im = () ->      
     color = coral
@@ -248,7 +278,7 @@ setup = () ->
       {color: int(dark(color)), expression: expr},
       {duration: duration, delay: 0}
   
-  re_to_im()
+ # re_to_im()
     
   domain = [[-1, 1], [-1, 1]]
   _x = domain[0][0]
@@ -256,14 +286,14 @@ setup = () ->
   _dx = (domain[0][1] - domain[0][0]) / (n - 1)
   _dy = (domain[1][1] - domain[1][0]) / (n - 1)
 
-  
-  mathbox.animate "camera",
-    {orbit: 0.2, lookAt: [0, 0, 0]},
-    {duration: 3000, delay: 5000}
+  if false
+    mathbox.animate "camera",
+      {orbit: 0.5, lookAt: [0, 0, 0]},
+      {duration: 3000, delay: 5000}
 
-  mathbox.animate "camera",
-    {orbit: 5, lookAt: [0, 0, 0]},
-    {duration: 3000, delay: 2000}
+    mathbox.animate "camera",
+      {orbit: 6, lookAt: [0, 0, 0]},
+      {duration: 3000, delay: 2000}
 
   normal_field = (i, end) ->
     _i = i
@@ -278,13 +308,17 @@ setup = () ->
       [nx, ny, nz] = normal f.re, x, y, 0.5 * _dx
       return [v[0] + nx, v[1] + nz, v[2] + ny]
 
-  mathbox.vector {
-      n: (n - 1) * (n - 1),
-      live: off,
-      expression: normal_field,
-      color: int(dark(turquoise)),
-      size: 0.01,
-    }
+  # I say live off, but the thing stills seems to be called
+  # repeatedly ... BUG ?
+  if false
+    mathbox.vector {
+        n: (n - 1) * (n - 1),
+        live: off,
+        expression: normal_field,
+        color: int(dark(dark(turquoise))),
+        size: 0.01,
+        arrow: true,
+      }
   
   # Make a list of possible states:
   #
@@ -364,12 +398,11 @@ setup = () ->
       opacity: 1.0,
       lineWidth: 2, # issue here, does increase erratically when higher values
       # are used
-    
-    
-###
-TODO: Cauchy-Riemann conditions graphically, with some animation.
-###
-
+ 
+  $(document).on "keypress", (event) ->
+    switch event.key
+      when "r", "u" then display_re()
+      when "i", "v" then display_im()
 
 jQuery ->
   ThreeBox.preload ["../html/MathBox.html"], setup
