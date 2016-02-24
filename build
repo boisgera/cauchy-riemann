@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "coffee -c main.coffee" && coffee -c main.coffee
+echo "coffee -c main.coffee" && coffee -c js/main.coffee
 cd css && echo "stylus style.styl" && stylus style.styl && cd -
 
 
