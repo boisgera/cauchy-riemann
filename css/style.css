@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  font-family: Lato;
+}
+h1 {
+  text-rendering: optimizeLegibility;
+  line-height: 1.5em;
+  margin: 0em;
+  color: #000;
+  text-align: center;
+  font-size: 10vmin;
+  font-weight: 100;
+}
+h1 strong {
+  font-weight: 900;
+}
+a,
+a:link,
+a:visited,
+a:hover {
+  text-decoration: none;
+  outline: 0;
+  color: #000;
+}
+.info {
+  font-size: 3vmin;
+  position: fixed;
+  margin: 1em;
+  padding: 0.5em;
+  background-color: rgba(255,255,255,0.2);
+}
+.info .left {
+  left: 0em;
+}
+.info[class*="left center"],
+.info[class*="center left"] {
+  left: 0em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.overlay {
+  pointer-events: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+.overlay * {
+  pointer-events: auto;
+}
+html,
+body,
+.canvas {
+  padding: 0em;
+  margin: 0em;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
