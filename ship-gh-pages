@@ -2,7 +2,12 @@
 
 git clean -fd
 git checkout gh-pages
+<<<<<<< HEAD
 git rebase --strategy=ours master
+=======
+git pull
+git merge master
+>>>>>>> master
 git commit -am "automatic commit"
 ./build
 git push origin gh-pages
