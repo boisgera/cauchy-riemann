@@ -2,7 +2,7 @@
 
 git clean -fd
 git checkout gh-pages
-git rebase --strategy=ours master
+git marge --strategy=theirs master
 git commit -am "automatic commit"
 ./build
 git push origin gh-pages
