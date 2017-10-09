@@ -2,7 +2,7 @@
 
 git clean -fd
 git checkout gh-pages
-git rebase --strategy=theirs master
+git rebase --strategy=ours master
 ./build
 git push origin gh-pages
 git checkout master
