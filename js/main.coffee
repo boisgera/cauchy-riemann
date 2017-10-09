@@ -1068,10 +1068,11 @@ main = () ->
   scenario.next()
 
   $(document).on "keypress", (event) ->
-    switch event.key
-      when "ArrowRight"
+    console.log "keycode", event.keyCode
+    switch event.keyCode
+      when 39 # "ArrowRight"
         scenario.next()
-      when "ArrowLeft"
+      when 37 # "ArrowLeft"
         scenario.previous()
 
-jQuery -> ThreeBox.preload "../html/MathBox.html", main
+jQuery -> ThreeBox.preload "html/MathBox.html", main
