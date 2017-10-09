@@ -2,8 +2,8 @@
 
 git clean -fd
 git checkout gh-pages
-git pull -s ours
-git merge --strategy=theirs master
+git pull
+git merge master
 git commit -am "automatic commit"
 ./build
 git push origin gh-pages
