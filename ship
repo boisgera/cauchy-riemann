@@ -1,0 +1,13 @@
+#!/bin/bash
+
+TARGET="/www/complex-analysis/mathbox"
+EUL=www.eul.ink
+
+ssh boisgera@$EUL mkdir -p "$TARGET"
+
+scp -p index.html $EUL:"$TARGET"
+scp -pr css $EUL:"$TARGET"
+scp -pr html $EUL:"$TARGET"
+scp -pr js $EUL:"$TARGET"
+
+
