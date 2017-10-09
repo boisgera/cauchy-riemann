@@ -9,7 +9,10 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
       MathJax.Hub.Config(
         {
-          "TeX": {"equationNumbers": {"autoNumber": "AMS"}}, 
+          "TeX": {
+            "equationNumbers": {"autoNumber": "AMS"},
+            "extensions": ["color.js"] 
+           }, 
           "HTML-CSS": {"scale": 90}
         }
       )
@@ -30,7 +33,20 @@
 target="_blank"><strong>Cauchy-Riemann Equations</strong></a></h1>
       </header>
       <div class="left center info">
-       \(\displaystyle f(z) = \frac{1}{2} z^2\)
+      <p>
+       \( 
+          \displaystyle f(z) = \frac{1}{2} z^2 
+       \)
+      </p>
+      <p>
+       \( 
+          \definecolor{coral}{rgb}{0.9372549019607843, 0.403921568627451, 0.0}
+          \definecolor{turquoise}{rgb}{0.1568627450980392, 0.7450980392156863, 0.7333333333333333}
+          \boldsymbol{
+            \textcolor{turquoise}{\mathrm{Re} f}
+          } \; | \; \boldsymbol{\textcolor{coral}{\mathrm{Im} f}}
+       \)
+      </p>
       </div>
     </div>
 <script type="application/x-glsl" id="bezierSurface3">
