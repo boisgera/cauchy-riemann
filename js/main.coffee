@@ -1076,3 +1076,4 @@ main = () ->
         scenario.previous()
 
 jQuery -> ThreeBox.preload "html/MathBox.html", main
+
